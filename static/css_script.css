@@ -1,0 +1,180 @@
+/* Warm, soft theme */
+:root{
+  --bg: #fff8f2;
+  --card: #fff3ea;
+  --accent: #d99b73;
+  --accent-2: #f0c9a3;
+  --text: #4a2f26;
+  --shadow: rgba(0,0,0,0.08);
+  --radius: 14px;
+}
+
+/* Global styling */
+body{
+  margin:0;
+  background: var(--bg);
+  font-family: "Garamond", "Calisto MT", serif;
+  color:var(--text);
+}
+
+/* Center content vertically & horizontally */
+.page-center{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:1.5rem;
+}
+
+/* Main card that WRAPS the form — not full width */
+.card{
+  width:100%;
+  max-width:450px;   /* <<< keeps it compact */
+  background: var(--card);
+  padding:1.8rem;
+  border-radius:var(--radius);
+  box-shadow:0 8px 24px var(--shadow);
+  border:1px solid rgba(150,100,70,0.15);
+}
+
+/* Form layout */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+/* Labels */
+label{
+  font-weight:600;
+  margin-bottom:0.25rem;
+}
+
+/* Inputs */
+input[type="number"],
+input[type="text"],
+select{
+  width:100%;
+  padding:0.7rem 0.9rem;
+  border-radius:10px;
+  border:1px solid rgba(180,130,100,0.3);
+  background:#fff;
+  font-size:1rem;
+  outline:none;
+  transition:0.15s ease;
+}
+
+input:focus,
+select:focus{
+  border-color: var(--accent);
+  box-shadow:0 4px 12px rgba(217,155,115,0.15);
+}
+
+/* Button */
+button,
+.button{
+  padding:0.8rem 1rem;
+  background:linear-gradient(180deg, var(--accent), var(--accent-2));
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.15s ease;
+  text-align:center;
+  width:100%;
+}
+
+button:hover{
+  opacity:0.95;
+  box-shadow:0 6px 15px rgba(217,155,115,0.25);
+}
+
+/* Prediction result card */
+.result-card{
+  width:100%;
+  max-width:420px;  /* <<< compact */
+  background:var(--card);
+  padding:1.5rem 2rem;
+  border-radius:var(--radius);
+  box-shadow:0 8px 24px var(--shadow);
+  text-align:center;
+  border:1px solid rgba(150,100,70,0.15);
+}
+
+.result-card h2{
+  margin-top:0;
+}
+
+.result-card p{
+  font-size:1.1rem;
+  margin:0.5rem 0;
+}
+
+/* --- Table card wrapper (keeps your warm card style) --- */
+.table-wrap {
+  margin-top: 1rem;
+  background: var(--card);
+  padding: 0.8rem;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 1px solid rgba(150,100,70,0.12);
+}
+
+/* Table */
+.table-wrap table{
+  width:100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.98rem;
+  background:#fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header */
+.table-wrap thead th{
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-weight: 700;
+  padding:12px 14px;
+  text-align:left;
+}
+
+/* Body cells */
+.table-wrap tbody td{
+  padding:12px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: var(--text);
+}
+
+/* Alternating and hover */
+.table-wrap tbody tr:nth-child(even){ background: #fff8f2; }
+.table-wrap tbody tr:hover{ background: #f6e6da; transition: background 0.18s ease; }
+
+/* Value styling */
+td.value-cell{ text-align: right; font-variant-numeric: tabular-nums; }
+td.positive{ color: #2e7d32; font-weight:600; }
+td.negative{ color: #c0392b; font-weight:600; }
+
+/* Tiny helper to make the page header look centered without <center> */
+.result-card h1 { margin: 0 0 0.4rem 0; font-size:1.25rem; text-align:center; }
+
+/* Confidence bar (simple, re-uses your variables) */
+.confidence {
+  margin-top: 0.8rem;
+}
+.confidence .bar {
+  width:100%;
+  height:12px;
+  background:#f4d7c3;
+  border-radius:8px;
+  overflow:hidden;
+}
+.confidence .bar .fill {
+  height:100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  width:0%;
+  transition: width 0.6s ease;
+}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block body %}
+<body>
+<div class="page-center">
+  <div class="result-card">
+    <h1><b>PREDICTION RESULT</b></h1>
+
+    <p><strong>Prediction:</strong> {{ pred }}</p>
+    <p><strong>Confidence:</strong> {{ confidence }}%</p>
+
+    <!-- Confidence visual -->
+    <div class="confidence" aria-hidden="true">
+      <div class="bar"><div id="conf-fill" class="fill"></div></div>
+    </div>
+
+    <!-- Contributions -->
+    <div class="table-wrap" role="region" aria-label="Feature contributions">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col">Contribution</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for element in data %}
+            <tr>
+              <td>{{ element[0] }}</td>
+              <td class="value-cell {% if element[1] > 0 %}positive{% else %}negative{% endif %}">
+                {{ '%.4f'|format(element[1]) }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:0.6rem; font-size:0.9rem; color: rgba(0,0,0,0.65);">
+      <strong>Note:</strong> Positive numbers drive the prediction upward; negative numbers drive it downward.
+    </p>
+  </div>
+</div>
+<button onclick="window.location.href='/'"
+        style="padding:10px 20px; border:none; background:#4a6cff; color:white; border-radius:6px; cursor:pointer;">
+    Predict Again
+</button>
+<!-- Small JS to set the confidence fill width (place before </body>) -->
+<script>
+  (function(){
+    // Ensure confidence is numeric
+    var conf = Number({{ confidence|default(0) }});
+    var fill = document.getElementById('conf-fill');
+    if(fill){
+      var w = Math.max(0, Math.min(100, conf)); // clamp 0..100
+      fill.style.width = w + '%';
+    }
+  })();
+</script>
+</body>
+{% endblock %}
