@@ -85,12 +85,13 @@ http://127.0.0.1:5000/
 pima-indians-diabetes-prediction/
 │
 ├── app.py                  # Flask app
-├── model.pkl               # Trained Gradient Boosting model
-├── Explainer.pkl           # SHAP explainer for model interpretability
+├── GBM_Classifier.pkl               # Trained Gradient Boosting model
+├── GBMExplainer.pkl           # SHAP explainer for model interpretability
 ├── StandardScaler.pkl      # Scaler for input feature values
 ├── templates/              # HTML templates
 │   ├── home_page.html      # Input form page
 │   └── output_page.html    # Prediction result page
+|   └── base.html           # Defines the default page properties for the other two html files
 ├── static/                 # CSS, JS, images
 ├── requirements.txt        # Python dependencies
 └── README.md
